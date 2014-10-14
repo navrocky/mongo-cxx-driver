@@ -27,7 +27,7 @@ namespace mongo {
 namespace {
     boost::thread_specific_ptr<std::string> _threadName;
 
-#if defined(_WIN32)
+#if defined(_WIN32) && defined(_MSC_VER)
 
 #define MS_VC_EXCEPTION 0x406D1388
 #pragma pack(push,8)
@@ -61,7 +61,7 @@ namespace {
     void setThreadName(StringData name) {
         _threadName.reset(new string(name.rawData(), name.size()));
 
-#if defined( DEBUG ) && defined( _WIN32 )
+#if defined( DEBUG ) && defined( _WIN32 ) && defined(_MSC_VER)
         // naming might be expensive so don't do "conn*" over and over
         setWinThreadName(_threadName.get()->c_str());
 #endif

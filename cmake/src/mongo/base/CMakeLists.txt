@@ -1,8 +1,5 @@
 set(TARGET mongo_base)
 
-find_package(Boost REQUIRED)
-include_directories(${Boost_INCLUDE_DIRS})
-
 set(SRC_DIR ${SRC_ROOT}/mongo/base)
 
 aux_source_directory(${SRC_DIR} SOURCES)

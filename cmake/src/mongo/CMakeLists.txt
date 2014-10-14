@@ -15,7 +15,12 @@ configure_file(${SRC_ROOT}/mongo/version.h.in ${CMAKE_CURRENT_BINARY_DIR}/versio
 include_directories(${CMAKE_BINARY_DIR}/src)
 include_directories(${SRC_ROOT}/third_party/gtest-1.7.0/include)
 
+find_package(Boost REQUIRED system)
+include_directories(${Boost_INCLUDE_DIRS})
+
 add_subdirectory(base)
 add_subdirectory(bson)
 add_subdirectory(client)
+add_subdirectory(util)
+add_subdirectory(logger)
 

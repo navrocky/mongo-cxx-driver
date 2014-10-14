@@ -82,7 +82,7 @@ namespace mongo {
 
     std::string time_t_to_String(time_t t) {
         char buf[64];
-#if defined(_WIN32)
+#if defined(_WIN32) && defined(_MSC_VER)
         ctime_s(buf, sizeof(buf), &t);
 #else
         ctime_r(&t, buf);
@@ -93,7 +93,7 @@ namespace mongo {
 
     std::string time_t_to_String_short(time_t t) {
         char buf[64];
-#if defined(_WIN32)
+#if defined(_WIN32) && defined(_MSC_VER)
         ctime_s(buf, sizeof(buf), &t);
 #else
         ctime_r(&t, buf);
@@ -187,7 +187,7 @@ namespace {
         static const size_t ctimeSubstrLen = 19;
         static const size_t millisSubstrLen = 4;
         time_t t = date.toTimeT();
-#if defined(_WIN32)
+#if defined(_WIN32) && defined(_MSC_VER)
         ctime_s(result->data, sizeof(result->data), &t);
 #else
         ctime_r(&t, result->data);
